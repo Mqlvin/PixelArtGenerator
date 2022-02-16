@@ -3,24 +3,22 @@ package me.henry.art.util;
 import me.henry.art.types.SkyType;
 
 import java.awt.*;
-import java.util.Random;
+import java.util.ArrayList;
 
 public class ColourUtils {
     // hook up brightness so image deep and shallows aren't super contrasting or super bland.
 
-    public static Color[] generateSkyColours(SkyType sky) {
+    public static ArrayList<Color> generateSkyColours(SkyType sky, int skyColors) {
         if(sky.equals(SkyType.DAY)) {
-            Color deepest = RandomUtils.boundedRGB(30, 50, 80, 150, 170, 230);
-            String[] lightValues = RandomUtils.coordinatedValues(120, 230).split("\\.");
-            Color shallowest = new Color(Integer.parseInt(lightValues[0]) / 2, Integer.parseInt(lightValues[1]), RandomUtils.boundedRandom(170, 230));
-
-            Color middle = getBetween(deepest, shallowest, 0.5);
-            Color deeper = getBetween(deepest, shallowest, 0.75);
-            Color shallower = getBetween(deepest, shallowest, 0.25);
-            return new Color[]{deepest, deeper, middle, shallower, shallowest};
+            ArrayList<Color> colors = new ArrayList<>();
+            colors.add(RandomUtils.boundedRGB(0, 20, 50, 120, 170, 200));
+            String[] lightValues = RandomUtils.coordinatedValues(150, 255).split("\\.");
+            colors.add(new Color(Integer.parseInt(lightValues[0]) / 2, Integer.parseInt(lightValues[1]), RandomUtils.boundedRandom(170, 230)));
+            for(int i = 0; i < skyColors - 2; i++) {
+                colors.add(1, getBetween(colors.get(0), colors.get(colors.size() - 1), (1.0f / (skyColors - 1) * (i + 1))));
+            }
+            return colors;
         }
-
-        // TODO: ITS GOING BACKWARDS NOW
         return null;
     }
 

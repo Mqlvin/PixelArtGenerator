@@ -1,21 +1,19 @@
 package me.henry.art;
 
-import me.henry.art.generator.Canvas;
-import me.henry.art.util.RandomUtils;
+import me.henry.art.canvas.Canvas;
+import me.henry.art.controller.Controller;
+import me.henry.art.types.SkyType;
 
-import javax.swing.*;
 import java.util.Random;
 
 public class PixelArtGenerator {
-    public static final Random random = new Random();
-    public static int height = 400;
-    public static int width = 400;
-
     public static void main(String[] args) {
-        Canvas canvas = new Canvas(50, 50);
-
-        for(int i = 0; i < 100; i++) {
-            System.out.println(RandomUtils.coordinatedValues(0, 50));
-        }
+        Controller settings = new Controller();
+        settings.setHeight(64);
+        settings.setWidth(128);
+        settings.setSky(SkyType.DAY);
+        settings.setSkyColors(64);
+        settings.setLandRatio(0.3);
+        Canvas canvas = new Canvas(settings);
     }
 }
