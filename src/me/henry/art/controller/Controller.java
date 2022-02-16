@@ -10,6 +10,7 @@ public class Controller {
     private int skyColors = 5;
 
     private double landRatio = 0.3;
+    private int landSamples = 5;
 
     public Controller() {
 
@@ -53,5 +54,13 @@ public class Controller {
 
     public void setLandRatio(double landRatio) {
         this.landRatio = landRatio;
+    }
+
+    public int getLandSamples() {
+        return landSamples;
+    }
+
+    public void setLandSamples(int landSamples) {
+        this.landSamples = landSamples;
     }
 }

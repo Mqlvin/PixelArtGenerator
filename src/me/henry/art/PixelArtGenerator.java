@@ -14,6 +14,7 @@ public class PixelArtGenerator {
         settings.setSky(SkyType.DAY);
         settings.setSkyColors(64);
         settings.setLandRatio(0.3);
+        settings.setLandSamples(5);
         Canvas canvas = new Canvas(settings);
     }
 }

@@ -11,7 +11,7 @@ public class ColourUtils {
     public static ArrayList<Color> generateSkyColours(SkyType sky, int skyColors) {
         if(sky.equals(SkyType.DAY)) {
             ArrayList<Color> colors = new ArrayList<>();
-            colors.add(RandomUtils.boundedRGB(0, 20, 50, 120, 170, 200));
+            colors.add(boundedRGB(0, 20, 50, 120, 170, 200));
             String[] lightValues = RandomUtils.coordinatedValues(150, 255).split("\\.");
             colors.add(new Color(Integer.parseInt(lightValues[0]) / 2, Integer.parseInt(lightValues[1]), RandomUtils.boundedRandom(170, 230)));
             for(int i = 0; i < skyColors - 2; i++) {
@@ -22,10 +22,21 @@ public class ColourUtils {
         return null;
     }
 
+    public static Color boundedRGB(int rBoundLower, int rBoundHigher, int gBoundLower, int gBoundHigher, int bBoundLower, int bBoundHigher) {
+        return new Color(RandomUtils.boundedRandom(rBoundLower, rBoundHigher), RandomUtils.boundedRandom(gBoundLower, gBoundHigher), RandomUtils.boundedRandom(bBoundLower, bBoundHigher));
+    }
+
     public static Color getBetween(Color first, Color second, double ratio) {
         int r = second.getRed() + Integer.parseInt(String.valueOf(((first.getRed() - second.getRed()) * ratio)).split("\\.")[0]);
         int g = second.getGreen() + Integer.parseInt(String.valueOf(((first.getGreen() - second.getGreen()) * ratio)).split("\\.")[0]);
         int b = second.getBlue() + Integer.parseInt(String.valueOf(((first.getBlue() - second.getBlue()) * ratio)).split("\\.")[0]);
+        return new Color(r, g, b);
+    }
+
+    public static Color brightness(Color color, double amount) {
+        int r = (int) MathUtils.clamp((float) Math.floor(color.getRed() * amount), 255, 0);
+        int g = (int) MathUtils.clamp((float) Math.floor(color.getGreen() * amount), 255, 0);
+        int b = (int) MathUtils.clamp((float) Math.floor(color.getBlue() * amount), 255, 0);
         return new Color(r, g, b);
     }
 }

@@ -9,10 +9,6 @@ public class RandomUtils {
         return new Color(random(255), random(255), random(255));
     }
 
-    public static Color boundedRGB(int rBoundLower, int rBoundHigher, int gBoundLower, int gBoundHigher, int bBoundLower, int bBoundHigher) {
-        return new Color(boundedRandom(rBoundLower, rBoundHigher), boundedRandom(gBoundLower, gBoundHigher), boundedRandom(bBoundLower, bBoundHigher));
-    }
-
     public static String coordinatedValues(int min, int max) {
         int first = boundedRandom(min, max);
         int second = 0;
